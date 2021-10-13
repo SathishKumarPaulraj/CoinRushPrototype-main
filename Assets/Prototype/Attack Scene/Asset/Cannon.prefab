@@ -149,7 +149,6 @@ MonoBehaviour:
   BlastPower: 5
   Cannonball: {fileID: 0}
   ShotPoint: {fileID: 0}
-  Explosion: {fileID: 0}
 --- !u!114 &7122331721895016375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +165,7 @@ MonoBehaviour:
   timeBetweenPoints: 0.1
   CollidableLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
 --- !u!1 &5168501027386804058
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class CardDeck : MonoBehaviour
     [SerializeField] private GameManager mGameManager;
     [SerializeField] private GameObject mCardHolderParent;
     private int clicks = 0;
+   
 
     [SerializeField] public List<ScriptedCards> mScriptedCards;
     public List<Cards> _CardList = new List<Cards>();
@@ -43,6 +44,9 @@ public class CardDeck : MonoBehaviour
 
         GameObject card = Instantiate(cards._cardModel,_playerHandPoints[clicks].transform.position, _playerHandPoints[clicks].transform.rotation);
         Cards cardDetails = card.GetComponent<Cards>();
+
+        Debug.Log(_playerHandPoints[clicks].transform.position);
+        Debug.Log(_playerHandPoints[clicks].transform.rotation);
 
         cardDetails._cardType = cards._cardType;
         cardDetails._cardID = cards._cardID;
@@ -78,6 +82,9 @@ public class CardDeck : MonoBehaviour
         }
 
         _CardList.Add(inNewCard);
+
+        Debug.Log(_playerHandPoints[clicks].transform.position);
+        Debug.Log(_playerHandPoints[clicks].transform.rotation);
     }
 
     public void ReplacementOfCards()
@@ -111,6 +118,10 @@ public class CardDeck : MonoBehaviour
              _RotationList.Add(_playerHandPoints[drawOrderArrange[i]].transform.rotation);
         }
 
+
+        Debug.Log(_playerHandPoints[clicks].transform.position);
+        Debug.Log(_playerHandPoints[clicks].transform.rotation);
+
         for (int i = 0; i < _CardList.Count; i++)
         {
             _CardList[i]._Position = _PositionList[i];
@@ -118,6 +129,10 @@ public class CardDeck : MonoBehaviour
             _CardList[i].transform.rotation = _RotationList[i];
             _CardList[i].transform.SetSiblingIndex (i + 1);
         }
+
+
+        Debug.Log(_playerHandPoints[clicks].transform.position);
+        Debug.Log(_playerHandPoints[clicks].transform.rotation);
     }
 
     /*public void CardAction(Cards inCard)
