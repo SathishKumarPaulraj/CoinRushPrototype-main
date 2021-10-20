@@ -16,6 +16,7 @@ public class CannonShotController : MonoBehaviour
     public List<GameObject> _TargetPoints = new List<GameObject>();
    // List<TargetPoints> _TargetPosition = new List<TargetPoints>();
     public GameObject _TargetPrefab;
+    public GameObject _multiplierPrefab;
 
     private Camera cam;
 
@@ -23,6 +24,7 @@ public class CannonShotController : MonoBehaviour
     {
         cam = Camera.main;
         TargetInstantiation();
+        MultiplierInstantiation();
     }
 
 
@@ -43,15 +45,22 @@ public class CannonShotController : MonoBehaviour
     void TargetInstantiation()
     {
         //GameObject newPosition = _TargetPoints[Random.Range(0, _TargetPoints.Count)];   
-
       //  GameObject TargetMark = Instantiate(_TargetPrefab, newPosition.transform.position, newPosition.transform.rotation);
 
-        Vector3[] spawnPositions = new[] { new Vector3(-6f, 8f, -44f), new Vector3(-9.2f, 19.7f, -19.7f), new Vector3(0.2f, 34.1f, -10f), new Vector3(11f, 18.9f, -23f), new Vector3(6.1f, 11.4f, -41.7f) };
-        Quaternion spawnRotation = Quaternion.identity;
+     //   Vector3[] spawnPositions = new[] { new Vector3(-6f, 8f, -44f), new Vector3(-9.2f, 19.7f, -19.7f), new Vector3(0.2f, 34.1f, -10f), new Vector3(11f, 18.9f, -23f), new Vector3(6.1f, 11.4f, -41.7f) };
+       // Quaternion spawnRotation = Quaternion.identity;
+        
         for (int i = 0; i < 6; i++)
         {
-            Instantiate(_TargetPrefab, spawnPositions[i], spawnRotation);
+            //Instantiate(_TargetPrefab, spawnPositions[i], spawnRotation);
+            Instantiate(_TargetPrefab, _TargetPoints[i].transform.position, Quaternion.identity);
         }
+    }
+
+    void MultiplierInstantiation()
+    {
+        GameObject newMultiplier = _TargetPoints[Random.Range(0, _TargetPoints.Count)];
+        GameObject MultiplierMark = Instantiate(_multiplierPrefab, newMultiplier.transform.position, newMultiplier.transform.rotation);
     }
 
     void LaunchProjectile()
