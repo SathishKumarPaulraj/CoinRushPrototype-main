@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-public class CannonShotController : MonoBehaviour
+
+public class CannonShot : MonoBehaviour
 {
 
     /*public GameObject _CannonBall;
@@ -14,38 +14,38 @@ public class CannonShotController : MonoBehaviour
     public Transform _shotPoint;
    // public GameObject _PositionPoints;
     public List<GameObject> _TargetPoints = new List<GameObject>();
-    public List<GameObject> _spawnedTargetPoints = new List<GameObject>();
-   // List<TargetPoints> _TargetPosition = new List<TargetPoints>();
+    public List<GameObject> _SpawnedTargetPoints = new List<GameObject>();
+    // List<TargetPoints> _TargetPosition = new List<TargetPoints>();
     public GameObject _TargetPrefab;
     public GameObject _multiplierPrefab;
     public GameObject _multiplierGameObject;
-    public float _MultiplierSwitchTime = 1.0f;
+    public float _MutliplierSwitchTime = 1.0f;
 
     private Camera cam;
     private int cachedTargetPoint = -1;
 
-
     private void Start()
     {
         cam = Camera.main;
-      
         TargetInstantiation();
         MultiplierInstantiation();
-        InvokeRepeating("DoMultiplierSwitching", 1f, _MultiplierSwitchTime);
+        InvokeRepeating("DoMultiplierSwitching", 1.0f, _MutliplierSwitchTime);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        LaunchProjectile();
-        /* if (Input.GetMouseButtonDown(0))
-         {
-             GameObject _CreatedCannonBall = Instantiate(_CannonBall, _shotPosition.position, _shotPosition.rotation);
-             _CreatedCannonBall.GetComponent<Rigidbody>().velocity = _shotPosition.transform.up * _blastPower;
-         }    */
-    }
 
+       
+        LaunchProjectile();
+
+       /* if (Input.GetMouseButtonDown(0))
+        {
+            GameObject _CreatedCannonBall = Instantiate(_CannonBall, _shotPosition.position, _shotPosition.rotation);
+            _CreatedCannonBall.GetComponent<Rigidbody>().velocity = _shotPosition.transform.up * _blastPower;
+        }    */
+    }
 
     void DoMultiplierSwitching()
     {
@@ -57,36 +57,35 @@ public class CannonShotController : MonoBehaviour
         }
 
         if (cachedTargetPoint != -1)
-            _spawnedTargetPoints[cachedTargetPoint].SetActive(true); 
-
+            _SpawnedTargetPoints[cachedTargetPoint].SetActive(true);
         int rand = Random.Range(0, _TargetPoints.Count);
         cachedTargetPoint = rand;
-        _spawnedTargetPoints[cachedTargetPoint].SetActive(false);
-        _multiplierGameObject.transform.localPosition = _spawnedTargetPoints[cachedTargetPoint].transform.localPosition;
-        _multiplierGameObject.transform.localRotation = _spawnedTargetPoints[cachedTargetPoint].transform.localRotation;
+        _SpawnedTargetPoints[cachedTargetPoint].SetActive(false);
+        _multiplierGameObject.transform.localPosition = _SpawnedTargetPoints[cachedTargetPoint].transform.localPosition;
+        _multiplierGameObject.transform.localRotation = _SpawnedTargetPoints[cachedTargetPoint].transform.localRotation;
     }
-       
 
     void TargetInstantiation()
     {
         //GameObject newPosition = _TargetPoints[Random.Range(0, _TargetPoints.Count)];   
-        //GameObject TargetMark = Instantiate(_TargetPrefab, newPosition.transform.position, newPosition.transform.rotation);
+      //  GameObject TargetMark = Instantiate(_TargetPrefab, newPosition.transform.position, newPosition.transform.rotation);
 
-        //Vector3[] spawnPositions = new[] { new Vector3(-6f, 8f, -44f), new Vector3(-9.2f, 19.7f, -19.7f), new Vector3(0.2f, 34.1f, -10f), new Vector3(11f, 18.9f, -23f), new Vector3(6.1f, 11.4f, -41.7f) };
-        //Quaternion spawnRotation = Quaternion.identity;
+     //   Vector3[] spawnPositions = new[] { new Vector3(-6f, 8f, -44f), new Vector3(-9.2f, 19.7f, -19.7f), new Vector3(0.2f, 34.1f, -10f), new Vector3(11f, 18.9f, -23f), new Vector3(6.1f, 11.4f, -41.7f) };
+       // Quaternion spawnRotation = Quaternion.identity;
+        int rand = Random.Range(0, _TargetPoints.Count);
 
         for (int i = 0; i < _TargetPoints.Count; i++)
         {
             //Instantiate(_TargetPrefab, spawnPositions[i], spawnRotation);
             GameObject go = Instantiate(_TargetPrefab, _TargetPoints[i].transform.position, Quaternion.identity);
-            _spawnedTargetPoints.Add(go);
+            _SpawnedTargetPoints.Add(go);
         }
     }
 
     void MultiplierInstantiation()
     {
         GameObject newMultiplier = _TargetPoints[0];
-        _multiplierGameObject = Instantiate(_multiplierPrefab, newMultiplier.transform.position, newMultiplier.transform.rotation);   
+        _multiplierGameObject = Instantiate(_multiplierPrefab, newMultiplier.transform.position, newMultiplier.transform.rotation);
     }
 
     void LaunchProjectile()
@@ -137,11 +136,5 @@ public class CannonShotController : MonoBehaviour
 
         return result;
 
-    }
-
-    public void BackButton()
-    {
-       // UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("TestSetup");
     }
 }
