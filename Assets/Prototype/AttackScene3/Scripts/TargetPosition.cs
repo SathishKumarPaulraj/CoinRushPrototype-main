@@ -14,5 +14,6 @@ public class TargetPosition : MonoBehaviour
     {
         GameObject Cannon = GameObject.Find("Cannon");
         Cannon.GetComponent<CannonShotController>().AssignTarget(this.gameObject.transform);
+        Cannon.SetActive(false);
     }
 }
