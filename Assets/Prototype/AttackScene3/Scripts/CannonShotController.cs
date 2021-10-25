@@ -20,6 +20,7 @@ public class CannonShotController : MonoBehaviour
     public GameObject _multiplierPrefab;
     public GameObject _multiplierGameObject;
     public float _MultiplierSwitchTime = 1.0f;
+    public GameObject _bullet;
 
     private Camera cam;
     private int cachedTargetPoint = -1;
@@ -38,12 +39,9 @@ public class CannonShotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LaunchProjectile();
-        /* if (Input.GetMouseButtonDown(0))
-         {
-             GameObject _CreatedCannonBall = Instantiate(_CannonBall, _shotPosition.position, _shotPosition.rotation);
-             _CreatedCannonBall.GetComponent<Rigidbody>().velocity = _shotPosition.transform.up * _blastPower;
-         }    */
+        //LaunchProjectile();
+        
+           
     }
 
 
@@ -89,7 +87,7 @@ public class CannonShotController : MonoBehaviour
         _multiplierGameObject = Instantiate(_multiplierPrefab, newMultiplier.transform.position, newMultiplier.transform.rotation);   
     }
 
-    void LaunchProjectile()
+  /*  void LaunchProjectile()
     {
         Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -114,7 +112,7 @@ public class CannonShotController : MonoBehaviour
         {
             Cursor.SetActive(false);
         }
-    }
+    } */
 
      Vector3 CalculateVelocity(Vector3 target, Vector3 origin,float time)
     {
@@ -139,9 +137,15 @@ public class CannonShotController : MonoBehaviour
 
     }
 
-    public void BackButton()
+
+    public void AssignTarget(Transform trans)
     {
-       // UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("TestSetup");
+        CancelInvoke("DoMultiplierSwitching");
+        Camera cam = Camera.main;
+        this.gameObject.transform.LookAt(trans);
+        Rigidbody _bullet =  Instantiate(_bulletPrefab, _shotPoint.transform.position, _shotPoint.transform.rotation);
+        _bullet.velocity = CalculateVelocity(trans.transform.position,_shotPoint.transform.position, 1f);
+        Camera.main.transform.parent = _bullet.transform;
     }
+   
 }
