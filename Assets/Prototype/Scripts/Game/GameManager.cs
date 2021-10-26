@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(MinutesToSecondsConverter(_minutes));
             _energy += 1;
         }
-    }
+    }   
 
     /// <summary>
     /// Converts the minutes given at Inspector into seconds and passes it to the coroutine function
