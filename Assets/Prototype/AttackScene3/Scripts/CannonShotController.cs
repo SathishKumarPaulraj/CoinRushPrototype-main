@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+
 public class CannonShotController : MonoBehaviour
 {
-
+    [SerializeField] private GameManager mGameManager;
     /*public GameObject _CannonBall;
     public Transform _shotPosition;
     public float _blastPower;*/
@@ -22,17 +24,35 @@ public class CannonShotController : MonoBehaviour
     public float _MultiplierSwitchTime = 1.0f;
     public GameObject _bullet;
 
+
     private Camera cam;
     private int cachedTargetPoint = -1;
 
 
+    private void Awake()
+    {
+        mGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        for (int i = 0; i< mGameManager._BuildingDetails.Count ; i++ )
+        {
+            Instantiate(mGameManager._BuildingDetails[i], mGameManager._PositionDetails[i], mGameManager._RotationList[i]);
+        }    
+      //  Instantiate(mGameManager._BuildingDetails[0], mGameManager._PositionDetails[0], mGameManager._RotationList[0]);
+        Debug.Log("Awake");
+        
+    }
+
     private void Start()
     {
+        
         cam = Camera.main;
       
         TargetInstantiation();
+        Debug.Log("TargetInstantiation");
         MultiplierInstantiation();
+        Debug.Log("MultiplierInstantiation");
         InvokeRepeating("DoMultiplierSwitching", 1f, _MultiplierSwitchTime);
+        Debug.Log("InvokeMultiplier");
     }
 
 
@@ -143,7 +163,7 @@ public class CannonShotController : MonoBehaviour
         this.gameObject.transform.LookAt(trans);
         Rigidbody _bullet =  Instantiate(_bulletPrefab, _shotPoint.transform.position, _shotPoint.transform.rotation);
         _bullet.velocity = CalculateVelocity(trans.transform.position,_shotPoint.transform.position, 1f);
-        Camera.main.transform.parent = _bullet.transform;
+       // Camera.main.transform.parent = _bullet.transform;
     }
    
 }

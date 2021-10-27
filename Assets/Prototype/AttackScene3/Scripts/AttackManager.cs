@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum BuildingTypes
+/*public enum BuildingTypes
 {
     Stable,
     Statue,
@@ -12,7 +11,7 @@ public enum BuildingTypes
     House
 }
 
-public class Buildings : MonoBehaviour
+public class AttackManager : MonoBehaviour
 {
 
     public List<GameObject> _BuildingDetails;
@@ -33,4 +32,5 @@ public class Buildings : MonoBehaviour
     {
         
     }
-}
+
+}*/
