@@ -16,4 +16,12 @@ public class RevengePanelButton : MonoBehaviour
             RevengeButtonPanel.SetActive(true);
         }
     }
+
+    public void CloseButton()
+    {
+        if (RevengeButtonPanel !=null)
+        {
+            RevengeButtonPanel.SetActive(false);
+        }
+    }
 }
