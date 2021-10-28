@@ -15,11 +15,18 @@ public class CardDeck : MonoBehaviour
     public List<Transform> _playerHandPoints;
     public List<Vector3> _PositionList = new List<Vector3>();
     public List<Quaternion> _RotationList = new List<Quaternion>();
+    public GameObject posi;
+    public GameObject targ;
 
 
     private void Start()
     {
         mGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // Instantiate(targ, posi.transform.position, targ.transform.rotation);
+        GameObject goo =  Instantiate(targ, posi.transform.position, targ.transform.rotation);
+
+        GameObject go = GameObject.Find("Go");
+        goo.transform.parent = go.transform;
     }
 
     /// <summary>

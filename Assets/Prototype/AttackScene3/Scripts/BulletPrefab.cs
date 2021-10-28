@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class BulletPrefab : MonoBehaviour
 {
-    
+
+    /// <summary>
+    /// This destroys the Bullet when it collides with the Target
+    /// </summary>
+    /// <param name="collision"></param>
     public void OnCollisionEnter(Collision collision)
     {
         Camera.main.transform.parent = null;

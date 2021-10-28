@@ -15,7 +15,10 @@ public class AttackSceneButton : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("TestSetup");
     }
 
-    //This enables the panel when Revenge button is Pressed
+    /// <summary>
+    ///  This enables the panel when Revenge button is Pressed
+    /// </summary>
+
     public void RevengePanel()
     {
 
@@ -25,7 +28,9 @@ public class AttackSceneButton : MonoBehaviour
         }
     }
 
-    //This close the Revenge Panel when close button Pressed
+    /// <summary>
+    /// This close the Revenge Panel when close button Pressed 
+    /// </summary>
     public void RevengeCloseButton()
     {
         if (RevengeButtonPanel != null)
@@ -34,6 +39,9 @@ public class AttackSceneButton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void ScorePanelOpen()
     {
         if (ScorePanel != null)
@@ -42,6 +50,10 @@ public class AttackSceneButton : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// 
+    /// </summary>
     public void ScorePanelClose()
     {
         if (ScorePanel != null)

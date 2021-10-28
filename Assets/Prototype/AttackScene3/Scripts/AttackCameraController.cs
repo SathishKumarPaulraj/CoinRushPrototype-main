@@ -20,6 +20,9 @@ public class AttackCameraController : MonoBehaviour
         staticMovement();
     }
 
+    /// <summary>
+    /// This moves the Camera Left and Right 
+    /// </summary>
     public void staticMovement()
     {
         Vector3 rotation = transform.eulerAngles;

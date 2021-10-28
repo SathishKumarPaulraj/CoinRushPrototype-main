@@ -7,17 +7,12 @@ using UnityEngine.SceneManagement;
 public class CannonShotController : MonoBehaviour
 {
     [SerializeField] private GameManager mGameManager;
-    /*public GameObject _CannonBall;
-    public Transform _shotPosition;
-    public float _blastPower;*/
     public Rigidbody _bulletPrefab;
     public GameObject Cursor;
     public LayerMask layer;
     public Transform _shotPoint;
-   // public GameObject _PositionPoints;
     public List<GameObject> _TargetPoints = new List<GameObject>();
     public List<GameObject> _spawnedTargetPoints = new List<GameObject>();
-   // List<TargetPoints> _TargetPosition = new List<TargetPoints>();
     public GameObject _TargetPrefab;
     public GameObject _multiplierPrefab;
     public GameObject _multiplierGameObject;
@@ -37,24 +32,17 @@ public class CannonShotController : MonoBehaviour
         {
             Instantiate(mGameManager._BuildingDetails[i], mGameManager._PositionDetails[i], mGameManager._RotationList[i]);
         }    
-      //  Instantiate(mGameManager._BuildingDetails[0], mGameManager._PositionDetails[0], mGameManager._RotationList[0]);
-        Debug.Log("Awake");
         
     }
 
     private void Start()
     {
-        
         cam = Camera.main;
       
         TargetInstantiation();
-        Debug.Log("TargetInstantiation");
         MultiplierInstantiation();
-        Debug.Log("MultiplierInstantiation");
         InvokeRepeating("DoMultiplierSwitching", 1f, _MultiplierSwitchTime);
-        Debug.Log("InvokeMultiplier");
     }
-
 
     // Update is called once per frame
     void Update()
@@ -62,7 +50,9 @@ public class CannonShotController : MonoBehaviour
            
     }
 
-
+    /// <summary>
+    /// This Function helps in moving the 2X Multiplier randomly Over the buildings
+    /// </summary>
     void DoMultiplierSwitching()
     {
         if (_multiplierGameObject == null)
@@ -81,58 +71,67 @@ public class CannonShotController : MonoBehaviour
         _multiplierGameObject.transform.localPosition = _spawnedTargetPoints[cachedTargetPoint].transform.localPosition;
         _multiplierGameObject.transform.localRotation = _spawnedTargetPoints[cachedTargetPoint].transform.localRotation;
     }
-       
 
+
+    /// <summary>
+    /// This helps in Instantiating the Target Mark on the Buildings.
+    /// </summary>    
     void TargetInstantiation()
     {
-        //GameObject newPosition = _TargetPoints[Random.Range(0, _TargetPoints.Count)];   
-        //GameObject TargetMark = Instantiate(_TargetPrefab, newPosition.transform.position, newPosition.transform.rotation);
-
-        //Vector3[] spawnPositions = new[] { new Vector3(-6f, 8f, -44f), new Vector3(-9.2f, 19.7f, -19.7f), new Vector3(0.2f, 34.1f, -10f), new Vector3(11f, 18.9f, -23f), new Vector3(6.1f, 11.4f, -41.7f) };
-        //Quaternion spawnRotation = Quaternion.identity;
-
         for (int i = 0; i < _TargetPoints.Count; i++)
         {
-            //Instantiate(_TargetPrefab, spawnPositions[i], spawnRotation);
             GameObject go = Instantiate(_TargetPrefab, _TargetPoints[i].transform.position, Quaternion.identity);
             _spawnedTargetPoints.Add(go);
         }
     }
 
+    /// <summary>
+    /// This Helps in Instantiating the 2X Multiplier 
+    /// </summary>    
     void MultiplierInstantiation()
     {
         GameObject newMultiplier = _TargetPoints[0];
         _multiplierGameObject = Instantiate(_multiplierPrefab, newMultiplier.transform.position, newMultiplier.transform.rotation);   
     }
 
-  /*  void LaunchProjectile()
-    {
-        Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if (Physics.Raycast(camRay, out hit, 100f, layer))
-        {
-            Cursor.SetActive(true);
-            Cursor.transform.position = hit.point + Vector3.up * 0.1f;
 
-            Vector3 Vo = CalculateVelocity(hit.point, _shotPoint.position, 1f);
+    /*  void LaunchProjectile()
+      {
+          Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
+          RaycastHit hit;
 
-            transform.rotation = Quaternion.LookRotation(Vo);
+          if (Physics.Raycast(camRay, out hit, 100f, layer))
+          {
+              Cursor.SetActive(true);
+              Cursor.transform.position = hit.point + Vector3.up * 0.1f;
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                Rigidbody obj = Instantiate(_bulletPrefab, _shotPoint.position, Quaternion.identity);
-                obj.velocity = Vo;
-            }
+              Vector3 Vo = CalculateVelocity(hit.point, _shotPoint.position, 1f);
 
-        }
-        else
-        {
-            Cursor.SetActive(false);
-        }
-    } */
+              transform.rotation = Quaternion.LookRotation(Vo);
 
-     Vector3 CalculateVelocity(Vector3 target, Vector3 origin,float time)
+              if (Input.GetMouseButtonDown(0))
+              {
+                  Rigidbody obj = Instantiate(_bulletPrefab, _shotPoint.position, Quaternion.identity);
+                  obj.velocity = Vo;
+              }
+
+          }
+          else
+          {
+              Cursor.SetActive(false);
+          }
+      } */
+
+
+    /// <summary>
+    ///  Calcuate the Projectile  of the Bullet from from Origin to Target
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="origin"></param>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    Vector3 CalculateVelocity(Vector3 target, Vector3 origin,float time)
     {
         //Define 
         Vector3 _distance = target - origin;
@@ -156,6 +155,10 @@ public class CannonShotController : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// This gets the Target mark Transform Details during on mouse Down click 
+    /// </summary>
+    /// <param name="trans"></param>
     public void AssignTarget(Transform trans)
     {
         CancelInvoke("DoMultiplierSwitching");
@@ -163,8 +166,8 @@ public class CannonShotController : MonoBehaviour
         this.gameObject.transform.LookAt(trans);
         Rigidbody _bullet =  Instantiate(_bulletPrefab, _shotPoint.transform.position, _shotPoint.transform.rotation);
         _bullet.velocity = CalculateVelocity(trans.transform.position,_shotPoint.transform.position, 1f);
-        // Camera.main.transform.parent = _bullet.transform;
-        // Destroy(_bullet, .1f);
+        Camera.main.transform.parent = _bullet.transform;
+        Destroy(_bullet, .8f);
     }
    
 }
