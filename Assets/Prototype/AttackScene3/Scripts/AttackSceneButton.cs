@@ -6,6 +6,7 @@ public class AttackSceneButton : MonoBehaviour
 {
 
     public GameObject RevengeButtonPanel;
+    public GameObject ScorePanel;
  
 
     //this function Exit the atatck scene and goes to the player main Scene 
@@ -33,4 +34,20 @@ public class AttackSceneButton : MonoBehaviour
         }
     }
 
+    public void ScorePanelOpen()
+    {
+        if (ScorePanel != null)
+        {
+            ScorePanel.SetActive(true);
+        }
+    }
+
+    public void ScorePanelClose()
+    {
+        if (ScorePanel != null)
+        {
+            ScorePanel.SetActive(false);
+
+        }
+    }
 }

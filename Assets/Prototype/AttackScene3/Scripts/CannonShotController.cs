@@ -163,7 +163,8 @@ public class CannonShotController : MonoBehaviour
         this.gameObject.transform.LookAt(trans);
         Rigidbody _bullet =  Instantiate(_bulletPrefab, _shotPoint.transform.position, _shotPoint.transform.rotation);
         _bullet.velocity = CalculateVelocity(trans.transform.position,_shotPoint.transform.position, 1f);
-       // Camera.main.transform.parent = _bullet.transform;
+        // Camera.main.transform.parent = _bullet.transform;
+        // Destroy(_bullet, .1f);
     }
    
 }

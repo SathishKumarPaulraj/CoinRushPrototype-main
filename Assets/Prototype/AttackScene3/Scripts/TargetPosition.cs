@@ -12,6 +12,8 @@ public class TargetPosition : MonoBehaviour
 
     public void OnMouseDown()
     {
+        GameObject _RevengeButton = GameObject.Find("RevengeButton");
+        _RevengeButton.SetActive(false);
         GameObject Cannon = GameObject.Find("Cannon");
         Cannon.GetComponent<CannonShotController>().AssignTarget(this.gameObject.transform);
         Cannon.SetActive(false);
