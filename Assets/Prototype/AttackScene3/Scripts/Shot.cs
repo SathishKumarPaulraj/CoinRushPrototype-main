@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-
-public class AttackManager : MonoBehaviour
+public class Shot : MonoBehaviour
 {
     [SerializeField] private GameManager mGameManager;
-   // public List<GameObject> _TargetPoints = new List<GameObject>();
+    public Rigidbody _bulletPrefab;
+    public GameObject Cursor;
+    public LayerMask layer;
+    public Transform _shotPoint;
+    public List<GameObject> _TargetPoints = new List<GameObject>();
     public List<GameObject> _spawnedTargetPoints = new List<GameObject>();
     public GameObject _TargetPrefab;
     public GameObject _multiplierPrefab;
     public GameObject _multiplierGameObject;
-    public GameObject _Cannon;
     public float _MultiplierSwitchTime = 1.0f;
-   
+    public GameObject _bullet;
+    public Text _RewardText;
+
+
     private Camera cam;
     private int cachedTargetPoint = -1;
 
@@ -23,17 +29,17 @@ public class AttackManager : MonoBehaviour
     {
         mGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        for (int i = 0; i< mGameManager._BuildingDetails.Count ; i++ )
+        for (int i = 0; i < mGameManager._BuildingDetails.Count; i++)
         {
             Instantiate(mGameManager._BuildingDetails[i], mGameManager._PositionDetails[i], mGameManager._RotationList[i]);
-        }    
-        
+        }
+
     }
 
     private void Start()
     {
         cam = Camera.main;
-      
+
         TargetInstantiation();
         MultiplierInstantiation();
         InvokeRepeating("DoMultiplierSwitching", 1f, _MultiplierSwitchTime);
@@ -41,8 +47,8 @@ public class AttackManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
-           
+    {
+
     }
 
     /// <summary>
@@ -52,17 +58,21 @@ public class AttackManager : MonoBehaviour
     {
         if (_multiplierGameObject == null)
         {
-            Vector3 newMultiplier = mGameManager._TargetMarkPost[0];
-            _multiplierGameObject = Instantiate(_multiplierPrefab, newMultiplier, Quaternion.identity);
+            GameObject newMultiplier = _TargetPoints[0];
+            _multiplierGameObject = Instantiate(_multiplierPrefab, newMultiplier.transform.position, newMultiplier.transform.rotation);
 
         }
 
         if (cachedTargetPoint != -1)
-            _spawnedTargetPoints[cachedTargetPoint].SetActive(true); 
+        {
+            _spawnedTargetPoints[cachedTargetPoint].SetActive(true);
+
+        }
 
 
-        int rand = Random.Range(0, mGameManager._TargetMarkPost.Count);
+        int rand = Random.Range(0, _TargetPoints.Count);
         cachedTargetPoint = rand;
+        _multiplierGameObject.name = cachedTargetPoint.ToString();
         _spawnedTargetPoints[cachedTargetPoint].SetActive(false);
         _multiplierGameObject.transform.localPosition = _spawnedTargetPoints[cachedTargetPoint].transform.localPosition;
         _multiplierGameObject.transform.localRotation = _spawnedTargetPoints[cachedTargetPoint].transform.localRotation;
@@ -74,13 +84,13 @@ public class AttackManager : MonoBehaviour
     /// </summary>    
     void TargetInstantiation()
     {
-        for (int i = 0; i < mGameManager._BuildingDetails.Count; i++)
+      /*  for (int i = 0; i < mGameManager._TargetPost.Count; i++)
         {
-            GameObject go = Instantiate(_TargetPrefab, mGameManager._TargetMarkPost[i], Quaternion.identity);
+            GameObject go = Instantiate(_TargetPrefab, mGameManager._TargetPost[i], Quaternion.identity);
             go.name = i.ToString();
-            Debug.Log(i);
             _spawnedTargetPoints.Add(go);
         }
+      */
     }
 
     /// <summary>
@@ -88,8 +98,8 @@ public class AttackManager : MonoBehaviour
     /// </summary>    
     void MultiplierInstantiation()
     {
-        Vector3 newMultiplier = mGameManager._TargetMarkPost[0];
-        _multiplierGameObject = Instantiate(_multiplierPrefab, newMultiplier, Quaternion.identity);   
+        GameObject newMultiplier = _TargetPoints[0];
+        _multiplierGameObject = Instantiate(_multiplierPrefab, newMultiplier.transform.position, newMultiplier.transform.rotation);
     }
 
 
@@ -129,7 +139,7 @@ public class AttackManager : MonoBehaviour
     /// <param name="origin"></param>
     /// <param name="time"></param>
     /// <returns></returns>
-    Vector3 CalculateVelocity(Vector3 target, Vector3 origin,float time)
+    Vector3 CalculateVelocity(Vector3 target, Vector3 origin, float time)
     {
         //Define 
         Vector3 _distance = target - origin;
@@ -167,21 +177,25 @@ public class AttackManager : MonoBehaviour
                 _spawnedTargetPoints[i].SetActive(false);
             }
         }
+        if (_multiplierGameObject.name != trans.gameObject.name)
+        {
+            _multiplierGameObject.SetActive(false);
+        }
         Camera cam = Camera.main;
-        
-        Invoke("De", 1f);
-        
-       /* this.gameObject.transform.LookAt(trans);
-        Rigidbody _bullet =  Instantiate(_bulletPrefab, _shotPoint.transform.position, _shotPoint.transform.rotation);
-        _bullet.velocity = CalculateVelocity(trans.transform.position,_shotPoint.transform.position, 1f);
-        Camera.main.transform.parent = _bullet.transform; */
-        //Destroy(_bullet, .8f);
+        this.gameObject.transform.LookAt(trans);
+        Rigidbody _bullet = Instantiate(_bulletPrefab, _shotPoint.transform.position, _shotPoint.transform.rotation);
+        _bullet.velocity = CalculateVelocity(trans.transform.position, _shotPoint.transform.position, 1f);
+        Camera.main.transform.parent = _bullet.transform;
+        int rewardValue = mGameManager._BuildingCost[int.Parse(trans.gameObject.name)];
+        if (trans.gameObject.tag == "Multiplier")
+        {
+            rewardValue = rewardValue * 2;
+        }
+        Debug.Log(rewardValue);
+        _RewardText.transform.parent.gameObject.SetActive(true);
+        _RewardText.text = "Your Rewards are " + rewardValue;
+        // Destroy(_bullet, .8f);
     }
-   
-    void De(Transform trans)
-    {
-        _Cannon.SetActive(true);
-        _Cannon.GetComponent<CannonShotController>().AssignPos(trans);
-        Destroy(_Cannon, 1f);
-    }
+
 }
+

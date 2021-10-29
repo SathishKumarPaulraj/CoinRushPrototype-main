@@ -11,6 +11,8 @@ public enum BuildingTypes
     Building,
     House
 }
+
+
 public class GameManager : MonoBehaviour
 {
     public int _coins;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     public List<Quaternion> _RotationList;
     public List<int> _BuildingUpgradationLevel;
     public List<int> _BuildingCost;
+    public List<Vector3> _TargetMarkPost;
 
     public int _maxEnergy = 50;
     private bool mIsFull = true; 
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject); //Stays throughout the game
         StartCoroutine(AutomaticEnergyRefiller());
+      
     }
 
     private void Update()

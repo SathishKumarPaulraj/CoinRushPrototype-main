@@ -22,11 +22,7 @@ public class CardDeck : MonoBehaviour
     private void Start()
     {
         mGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        // Instantiate(targ, posi.transform.position, targ.transform.rotation);
-        GameObject goo =  Instantiate(targ, posi.transform.position, targ.transform.rotation);
-
-        GameObject go = GameObject.Find("Go");
-        goo.transform.parent = go.transform;
+      
     }
 
     /// <summary>

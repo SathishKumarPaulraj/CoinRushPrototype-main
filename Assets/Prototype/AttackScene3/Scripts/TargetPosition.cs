@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TargetPosition : MonoBehaviour
 {
-    private GameManager mGameManager;
-
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +15,8 @@ public class TargetPosition : MonoBehaviour
     {
         GameObject _RevengeButton = GameObject.Find("RevengeButton");
         _RevengeButton.SetActive(false);
-        GameObject Cannon = GameObject.Find("Cannon");
-        Cannon.GetComponent<CannonShotController>().AssignTarget(this.gameObject.transform);
-        Cannon.SetActive(false);
-    }
-
-    public void ScoreCalculation()
-    {
-        mGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        GameObject _AttackManager = GameObject.Find("AttackManager");
+        _AttackManager.GetComponent<AttackManager>().AssignTarget(this.gameObject.transform);
+        //Cannon.SetActive(false);
     }
 }
