@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class AttackManager : MonoBehaviour
@@ -14,10 +15,14 @@ public class AttackManager : MonoBehaviour
     public GameObject _multiplierGameObject;
     public GameObject _Cannon;
     public float _MultiplierSwitchTime = 1.0f;
+    public GameObject _ScorePanel;
+    public Text _ScoreTextOne;
+    public Text _ScoreTextTwo;
+    public Text _ScoreTextThree;
+    public GameObject _bulletPre;
    
     private Camera cam;
     private int cachedTargetPoint = -1;
-
 
     private void Awake()
     {
@@ -63,6 +68,7 @@ public class AttackManager : MonoBehaviour
 
         int rand = Random.Range(0, mGameManager._TargetMarkPost.Count);
         cachedTargetPoint = rand;
+        _multiplierGameObject.name = cachedTargetPoint.ToString();
         _spawnedTargetPoints[cachedTargetPoint].SetActive(false);
         _multiplierGameObject.transform.localPosition = _spawnedTargetPoints[cachedTargetPoint].transform.localPosition;
         _multiplierGameObject.transform.localRotation = _spawnedTargetPoints[cachedTargetPoint].transform.localRotation;
@@ -167,21 +173,35 @@ public class AttackManager : MonoBehaviour
                 _spawnedTargetPoints[i].SetActive(false);
             }
         }
+        if (_multiplierGameObject.name != trans.gameObject.name)
+        {
+            _multiplierGameObject.SetActive(false);
+        }
         Camera cam = Camera.main;
-        
-        Invoke("De", 1f);
-        
-       /* this.gameObject.transform.LookAt(trans);
-        Rigidbody _bullet =  Instantiate(_bulletPrefab, _shotPoint.transform.position, _shotPoint.transform.rotation);
-        _bullet.velocity = CalculateVelocity(trans.transform.position,_shotPoint.transform.position, 1f);
-        Camera.main.transform.parent = _bullet.transform; */
-        //Destroy(_bullet, .8f);
-    }
-   
-    void De(Transform trans)
-    {
         _Cannon.SetActive(true);
         _Cannon.GetComponent<CannonShotController>().AssignPos(trans);
-        Destroy(_Cannon, 1f);
+        _Cannon.SetActive(false);
+        // ScoreCalculation(trans);
+        StartCoroutine(ScoreCalculation(trans));
     }
+
+     public IEnumerator ScoreCalculation(Transform trans)
+     {
+
+         int RewardValue = mGameManager._BuildingCost[int.Parse(trans.gameObject.name)];
+         _ScoreTextOne.text = "Building Cost - " + RewardValue;
+         if (trans.gameObject.name == _multiplierGameObject.name)
+         {
+            _ScoreTextTwo.text = "Multiplier (2x) - " + RewardValue + " * 2";
+            RewardValue = RewardValue * 2;
+              
+         }
+         _ScoreTextThree.text = "Your Score Are - " + RewardValue;
+         yield return new WaitForSeconds(2);
+         _ScoreTextThree.transform.parent.gameObject.SetActive(true);
+         Debug.Log("I am Here");
+
+
+     }
+
 }

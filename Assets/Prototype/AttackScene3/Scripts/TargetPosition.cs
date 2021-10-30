@@ -17,6 +17,5 @@ public class TargetPosition : MonoBehaviour
         _RevengeButton.SetActive(false);
         GameObject _AttackManager = GameObject.Find("AttackManager");
         _AttackManager.GetComponent<AttackManager>().AssignTarget(this.gameObject.transform);
-        //Cannon.SetActive(false);
     }
 }

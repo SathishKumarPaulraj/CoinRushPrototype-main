@@ -38,28 +38,4 @@ public class AttackSceneButton : MonoBehaviour
             RevengeButtonPanel.SetActive(false);
         }
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public void ScorePanelOpen()
-    {
-        if (ScorePanel != null)
-        {
-            ScorePanel.SetActive(true);
-        }
-    }
-
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public void ScorePanelClose()
-    {
-        if (ScorePanel != null)
-        {
-            ScorePanel.SetActive(false);
-
-        }
-    }
 }
