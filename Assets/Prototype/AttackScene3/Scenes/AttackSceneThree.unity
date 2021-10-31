@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 6f775e6ad01a0444082abebca2299b87, type: 3}
   m_Sun: {fileID: 2080978785}
-  m_IndirectSpecularColor: {r: 0.039965477, g: 0.2009832, b: 0.2623816, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1428,7 +1428,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 242704473}
-  - component: {fileID: 242704474}
   - component: {fileID: 242704475}
   m_Layer: 0
   m_Name: Cannon
@@ -1453,30 +1452,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &242704474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 242704472}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d7f22c139e6ec44ab8407027eac0a66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mGameManager: {fileID: 0}
-  _spawnedTargetPoints: []
-  _TargetPrefab: {fileID: 7129945847651902562, guid: a9f3e76ee8573044c8e6b73b0c8e9367, type: 3}
-  _multiplierPrefab: {fileID: 5139006307031848410, guid: dfedaace5f3fa4742a036271e7233377, type: 3}
-  _multiplierGameObject: {fileID: 0}
-  _Cannon: {fileID: 0}
-  _MultiplierSwitchTime: 1
-  _ScorePanel: {fileID: 0}
-  _ScoreTextOne: {fileID: 0}
-  _ScoreTextTwo: {fileID: 0}
-  _ScoreTextThree: {fileID: 0}
-  _bulletPre: {fileID: 0}
 --- !u!114 &242704475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2266,12 +2241,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387999534}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5caddc1ea32e51940945601f52a4d080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 10
+  mTargetToRotateAround: {fileID: 1116876281}
+  _RotationLimit: 30
+  _CameraFreeRoam: 1
 --- !u!1 &390577745
 GameObject:
   m_ObjectHideFlags: 0
@@ -8973,6 +8951,17 @@ MonoBehaviour:
   _ScoreTextTwo: {fileID: 1179772877}
   _ScoreTextThree: {fileID: 1117149052}
   _bulletPre: {fileID: 0}
+  _Sprite1: {fileID: 21300000, guid: 6f713d266d0f8d94cbbbc498390762b5, type: 3}
+  _Sprite2: {fileID: 21300000, guid: 6f713d266d0f8d94cbbbc498390762b5, type: 3}
+  _Sprite3: {fileID: 21300000, guid: 6f713d266d0f8d94cbbbc498390762b5, type: 3}
+  _Sprite4: {fileID: 21300000, guid: 6f713d266d0f8d94cbbbc498390762b5, type: 3}
+  _Sprite5: {fileID: 21300000, guid: 6f713d266d0f8d94cbbbc498390762b5, type: 3}
+  _Mul1: {fileID: 0}
+  _Mul2: {fileID: 0}
+  _Mul3: {fileID: 0}
+  _Mul4: {fileID: 0}
+  _Mul5: {fileID: 0}
+  _TargetTransform: {fileID: 0}
 --- !u!4 &1591016898
 Transform:
   m_ObjectHideFlags: 0
@@ -11465,7 +11454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 202071164a128dd4aa6759054b50f666, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 202071164a128dd4aa6759054b50f666, type: 3}
       propertyPath: m_StaticEditorFlags

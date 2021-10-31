@@ -20,7 +20,10 @@ public class AttackManager : MonoBehaviour
     public Text _ScoreTextTwo;
     public Text _ScoreTextThree;
     public GameObject _bulletPre;
-   
+    public Sprite _Sprite1, _Sprite2, _Sprite3, _Sprite4, _Sprite5;
+    public Sprite _Mul1, _Mul2, _Mul3, _Mul4, _Mul5;
+    public Transform _TargetTransform;
+
     private Camera cam;
     private int cachedTargetPoint = -1;
 
@@ -95,7 +98,8 @@ public class AttackManager : MonoBehaviour
     void MultiplierInstantiation()
     {
         Vector3 newMultiplier = mGameManager._TargetMarkPost[0];
-        _multiplierGameObject = Instantiate(_multiplierPrefab, newMultiplier, Quaternion.identity);   
+        _multiplierGameObject = Instantiate(_multiplierPrefab, newMultiplier, Quaternion.identity);
+        _multiplierGameObject.name = 0.ToString();
     }
 
 
@@ -165,25 +169,85 @@ public class AttackManager : MonoBehaviour
     /// <param name="trans"></param>
     public void AssignTarget(Transform trans)
     {
+        _TargetTransform = trans;
+        for (int i = 0; i < mGameManager._BuildingCost.Count; i++)
+        {
+            switch (mGameManager._BuildingCost[i])
+            {
+                case 10:
+                    _spawnedTargetPoints[i].GetComponent<SpriteRenderer>().sprite = _Sprite1;
+                    break;
+                case 20:
+                    _spawnedTargetPoints[i].GetComponent<SpriteRenderer>().sprite = _Sprite2;
+                    break;
+                case 30:
+                    _spawnedTargetPoints[i].GetComponent<SpriteRenderer>().sprite = _Sprite3;
+                    break;
+                case 40:
+                    _spawnedTargetPoints[i].GetComponent<SpriteRenderer>().sprite = _Sprite4;
+                    break;
+                case 50:
+                    _spawnedTargetPoints[i].GetComponent<SpriteRenderer>().sprite = _Sprite5;
+                    break;
+            }
+
+
+        }
+        switch (int.Parse(_multiplierGameObject.name))
+        {
+            case 1:
+                _multiplierGameObject.GetComponent<SpriteRenderer>().sprite = _Sprite1;
+                break;
+            case 2:
+                _multiplierGameObject.GetComponent<SpriteRenderer>().sprite = _Sprite2;
+                break;
+            case 3:
+                _multiplierGameObject.GetComponent<SpriteRenderer>().sprite = _Sprite3;
+                break;
+            case 4:
+                _multiplierGameObject.GetComponent<SpriteRenderer>().sprite = _Sprite4;
+                break;
+            case 5:
+                _multiplierGameObject.GetComponent<SpriteRenderer>().sprite = _Sprite5;
+                break;
+        }
+      
+        Invoke("DisableBuildingCost", 2f);
         CancelInvoke("DoMultiplierSwitching");
+        Invoke("PerformTarget", 2.1f);
+    }
+
+    public void DisableBuildingCost()
+    {
         for (int i = 0; i < _spawnedTargetPoints.Count; i++)
         {
-            if (i != int.Parse(trans.gameObject.name))
+            _spawnedTargetPoints[i].SetActive(false);
+
+        }
+        _multiplierGameObject.SetActive(false);
+    }
+
+    public void PerformTarget()
+    {
+        for (int i = 0; i < _spawnedTargetPoints.Count; i++)
+        {
+            if (i != int.Parse(_TargetTransform.gameObject.name))
             {
                 _spawnedTargetPoints[i].SetActive(false);
             }
         }
-        if (_multiplierGameObject.name != trans.gameObject.name)
+        if (_multiplierGameObject.name != _TargetTransform.gameObject.name)
         {
             _multiplierGameObject.SetActive(false);
         }
         Camera cam = Camera.main;
         _Cannon.SetActive(true);
-        _Cannon.GetComponent<CannonShotController>().AssignPos(trans);
-        _Cannon.SetActive(false);
+        _Cannon.GetComponent<CannonShotController>().AssignPos(_TargetTransform);
+       // _Cannon.SetActive(false);
         // ScoreCalculation(trans);
-        StartCoroutine(ScoreCalculation(trans));
+        StartCoroutine(ScoreCalculation(_TargetTransform));
     }
+    
 
      public IEnumerator ScoreCalculation(Transform trans)
      {
@@ -203,5 +267,7 @@ public class AttackManager : MonoBehaviour
 
 
      }
+
+
 
 }

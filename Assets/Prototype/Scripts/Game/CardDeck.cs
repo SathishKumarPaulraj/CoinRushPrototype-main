@@ -130,40 +130,41 @@ public class CardDeck : MonoBehaviour
     /// </summary>
     void CardCheckingFunction()
     {
-        if (_CardList[0]._cardID == _CardList[1]._cardID && _CardList[0]._cardID == _CardList[2]._cardID)
-        {
-            k = 1;
-            Invoke("CardTrigger", 1.5f);
-        }
-        else if (_CardList[1]._cardID == _CardList[2]._cardID && _CardList[1]._cardID == _CardList[3]._cardID)
-        {
-            k = 2;
-            Invoke("CardTrigger", 1.5f);
-        }
-        else if (_CardList[2]._cardID == _CardList[3]._cardID && _CardList[2]._cardID == _CardList[4]._cardID)
-        {
-            k = 3;
-            Invoke("CardTrigger", 1.5f);
-        }
-        else if (_CardList[3]._cardID == _CardList[4]._cardID && _CardList[3]._cardID == _CardList[5]._cardID)
-        {
-            k = 4;
-            Invoke("CardTrigger", 1.5f);
-        }
-        else if (_CardList[4]._cardID == _CardList[5]._cardID && _CardList[4]._cardID == _CardList[6]._cardID)
-        {
-            k = 5;
-            Invoke("CardTrigger", 1.5f);
-        }
-        else if (_CardList[5]._cardID == _CardList[6]._cardID && _CardList[5]._cardID == _CardList[7]._cardID)
-        {
-            k = 6;
-            Invoke("CardTrigger", 1.5f);
-        }
-        //if(_CardList >= _CardList.Count)
-        //{
-        //    return;
-        //}
+        Invoke("CardTrigger", 1.5f);
+        /* if (_CardList[0]._cardID == _CardList[1]._cardID && _CardList[0]._cardID == _CardList[2]._cardID)
+         {
+             k = 1;
+             Invoke("CardTrigger", 1.5f);
+         }
+         else if (_CardList[1]._cardID == _CardList[2]._cardID && _CardList[1]._cardID == _CardList[3]._cardID)
+         {
+             k = 2;
+             Invoke("CardTrigger", 1.5f);
+         }
+         else if (_CardList[2]._cardID == _CardList[3]._cardID && _CardList[2]._cardID == _CardList[4]._cardID)
+         {
+             k = 3;
+             Invoke("CardTrigger", 1.5f);
+         }
+         else if (_CardList[3]._cardID == _CardList[4]._cardID && _CardList[3]._cardID == _CardList[5]._cardID)
+         {
+             k = 4;
+             Invoke("CardTrigger", 1.5f);
+         }
+         else if (_CardList[4]._cardID == _CardList[5]._cardID && _CardList[4]._cardID == _CardList[6]._cardID)
+         {
+             k = 5;
+             Invoke("CardTrigger", 1.5f);
+         }
+         else if (_CardList[5]._cardID == _CardList[6]._cardID && _CardList[5]._cardID == _CardList[7]._cardID)
+         {
+             k = 6;
+             Invoke("CardTrigger", 1.5f);
+         }
+         //if(_CardList >= _CardList.Count)
+         //{
+         //    return;
+         //}*/
     }
     /// <summary>
     /// This Function will Trigger the Scene if 3 Cards Matches
