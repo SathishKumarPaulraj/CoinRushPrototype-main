@@ -7258,23 +7258,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2858469283422625867, guid: 168b1fc8fe3d98041a3816ef69daa413, type: 3}
       propertyPath: _BuildingCost.Array.data[0]
-      value: 10
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 2858469283422625867, guid: 168b1fc8fe3d98041a3816ef69daa413, type: 3}
       propertyPath: _BuildingCost.Array.data[1]
-      value: 20
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 2858469283422625867, guid: 168b1fc8fe3d98041a3816ef69daa413, type: 3}
       propertyPath: _BuildingCost.Array.data[2]
-      value: 30
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 2858469283422625867, guid: 168b1fc8fe3d98041a3816ef69daa413, type: 3}
       propertyPath: _BuildingCost.Array.data[3]
-      value: 40
+      value: 4000
       objectReference: {fileID: 0}
     - target: {fileID: 2858469283422625867, guid: 168b1fc8fe3d98041a3816ef69daa413, type: 3}
       propertyPath: _BuildingCost.Array.data[4]
-      value: 50
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 2858469283422625867, guid: 168b1fc8fe3d98041a3816ef69daa413, type: 3}
       propertyPath: _BuildingDetails.Array.size

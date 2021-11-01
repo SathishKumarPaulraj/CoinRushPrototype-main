@@ -8941,8 +8941,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mGameManager: {fileID: 0}
   _spawnedTargetPoints: []
-  _TargetPrefab: {fileID: 7129945847651902562, guid: a9f3e76ee8573044c8e6b73b0c8e9367, type: 3}
-  _multiplierPrefab: {fileID: 5139006307031848410, guid: dfedaace5f3fa4742a036271e7233377, type: 3}
+  _TargetPrefab: {fileID: 2964187263848260047, guid: 77de36efbaacc1d4a960bf5a813c151b, type: 3}
+  _multiplierPrefab: {fileID: 4839008891271224015, guid: 014162781f4c9884eac6fc27d61c88fa, type: 3}
   _multiplierGameObject: {fileID: 0}
   _Cannon: {fileID: 242704472}
   _MultiplierSwitchTime: 1
@@ -8956,11 +8956,6 @@ MonoBehaviour:
   _Sprite3: {fileID: 21300000, guid: 207a66e0973f33f44a9f0f4e5c8844a4, type: 3}
   _Sprite4: {fileID: 21300000, guid: 195fa5b469ed12046a930ba72c188bdd, type: 3}
   _Sprite5: {fileID: 21300000, guid: 75ae090d4488ca441a92dd3023cbf883, type: 3}
-  _Mul1: {fileID: 0}
-  _Mul2: {fileID: 0}
-  _Mul3: {fileID: 0}
-  _Mul4: {fileID: 0}
-  _Mul5: {fileID: 0}
   _TargetTransform: {fileID: 0}
 --- !u!4 &1591016898
 Transform:
@@ -11454,7 +11449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 202071164a128dd4aa6759054b50f666, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 202071164a128dd4aa6759054b50f666, type: 3}
       propertyPath: m_StaticEditorFlags

@@ -173,19 +173,19 @@ public class AttackManager : MonoBehaviour
         {
             switch (mGameManager._BuildingCost[i])
             {
-                case 10:
+                case 1000:
                     _spawnedTargetPoints[i].GetComponent<SpriteRenderer>().sprite = _Sprite1;
                     break;
-                case 20:
+                case 2000:
                     _spawnedTargetPoints[i].GetComponent<SpriteRenderer>().sprite = _Sprite2;
                     break;
-                case 30:
+                case 3000:
                     _spawnedTargetPoints[i].GetComponent<SpriteRenderer>().sprite = _Sprite3;
                     break;
-                case 40:
+                case 4000:
                     _spawnedTargetPoints[i].GetComponent<SpriteRenderer>().sprite = _Sprite4;
                     break;
-                case 50:
+                case 5000:
                     _spawnedTargetPoints[i].GetComponent<SpriteRenderer>().sprite = _Sprite5;
                     break;
             }
@@ -194,19 +194,19 @@ public class AttackManager : MonoBehaviour
         }
         switch (int.Parse(_multiplierGameObject.name))
         {
-            case 1:
+            case 0:
                 _multiplierGameObject.GetComponent<SpriteRenderer>().sprite = _Sprite1;
                 break;
-            case 2:
+            case 1:
                 _multiplierGameObject.GetComponent<SpriteRenderer>().sprite = _Sprite2;
                 break;
-            case 3:
+            case 2:
                 _multiplierGameObject.GetComponent<SpriteRenderer>().sprite = _Sprite3;
                 break;
-            case 4:
+            case 3:
                 _multiplierGameObject.GetComponent<SpriteRenderer>().sprite = _Sprite4;
                 break;
-            case 5:
+            case 4:
                 _multiplierGameObject.GetComponent<SpriteRenderer>().sprite = _Sprite5;
                 break;
         }

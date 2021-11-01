@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2256671242530809045
+--- !u!1001 &321717037729419029
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -29,15 +29,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2450090303044204362, guid: dfedaace5f3fa4742a036271e7233377, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.9
+      value: -0.43
       objectReference: {fileID: 0}
     - target: {fileID: 2450090303044204362, guid: dfedaace5f3fa4742a036271e7233377, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.04191
+      value: 11.79
       objectReference: {fileID: 0}
     - target: {fileID: 2450090303044204362, guid: dfedaace5f3fa4742a036271e7233377, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.61293
+      value: -54.6
       objectReference: {fileID: 0}
     - target: {fileID: 2450090303044204362, guid: dfedaace5f3fa4742a036271e7233377, type: 3}
       propertyPath: m_LocalRotation.w
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5139006307031848410, guid: dfedaace5f3fa4742a036271e7233377, type: 3}
       propertyPath: m_Name
-      value: Multiplier (1)
+      value: Multiplier Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfedaace5f3fa4742a036271e7233377, type: 3}
