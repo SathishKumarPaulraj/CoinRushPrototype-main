@@ -21,7 +21,6 @@ public class AttackManager : MonoBehaviour
     public Text _ScoreTextThree;
     public GameObject _bulletPre;
     public Sprite _Sprite1, _Sprite2, _Sprite3, _Sprite4, _Sprite5;
-    public Sprite _Mul1, _Mul2, _Mul3, _Mul4, _Mul5;
     public Transform _TargetTransform;
 
     private Camera cam;
